@@ -1,0 +1,37 @@
+{
+  "name": "cybersec-news-aggregator-backend",
+  "version": "1.0.0",
+  "description": "Backend API for CyberSec News Aggregator - fetches and aggregates cybersecurity news from multiple sources",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cybersecurity",
+    "news",
+    "aggregator",
+    "rss",
+    "api"
+  ],
+  "author": "Rubelefsky",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2",
+    "rss-parser": "^3.13.0",
+    "node-cache": "^5.1.2",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
