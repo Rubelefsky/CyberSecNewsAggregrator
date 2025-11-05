@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity News Aggregator - Latest security news from around the web">
+    <title>CyberSec News Aggregator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>CyberSec News Aggregator</h1>
+            </div>
+            <p class="tagline">Your centralized hub for the latest cybersecurity news</p>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by title, description, or keywords..."
+                >
+                <button id="clearSearch" class="clear-btn" title="Clear search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="sourceFilter">
+                        <i class="fas fa-filter"></i> Filter by Source:
+                    </label>
+                    <select id="sourceFilter" class="filter-select">
+                        <option value="all">All Sources</option>
+                        <option value="thehackernews">The Hacker News</option>
+                        <option value="bleepingcomputer">Bleeping Computer</option>
+                        <option value="krebsonsecurity">Krebs on Security</option>
+                        <option value="darkreading">Dark Reading</option>
+                        <option value="threatpost">Threatpost</option>
+                        <option value="securityweek">SecurityWeek</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortBy">
+                        <i class="fas fa-sort"></i> Sort by:
+                    </label>
+                    <select id="sortBy" class="filter-select">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="title">Title (A-Z)</option>
+                    </select>
+                </div>
+
+                <button id="refreshBtn" class="refresh-btn" title="Refresh news">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <i class="fas fa-newspaper"></i>
+                <span id="articleCount">0</span> Articles
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                Last updated: <span id="lastUpdated">Never</span>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading cybersecurity news...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p id="errorText">An error occurred while loading news.</p>
+        </div>
+
+        <!-- News Grid -->
+        <div id="newsGrid" class="news-grid">
+            <!-- News cards will be dynamically inserted here -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CyberSec News Aggregator | Aggregating security news for the community</p>
+            <div class="footer-links">
+                <a href="#" title="About"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#" title="Privacy"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
