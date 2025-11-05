@@ -1,4 +1,11 @@
 // ===================================
+// Configuration
+// ===================================
+
+const API_BASE_URL = window.location.origin;
+const USE_BACKEND = true; // Set to false to use sample data
+
+// ===================================
 // Global State Management
 // ===================================
 
@@ -7,7 +14,9 @@ const state = {
     filteredArticles: [],
     currentSource: 'all',
     currentSort: 'date-desc',
-    searchQuery: ''
+    searchQuery: '',
+    isLoading: false,
+    error: null
 };
 
 // ===================================
@@ -194,20 +203,63 @@ function attachEventListeners() {
 // News Loading and Display
 // ===================================
 
-function loadNews() {
+async function loadNews() {
     try {
-        // Simulate API call delay
-        state.allArticles = [...sampleNews];
-        state.filteredArticles = [...sampleNews];
+        state.isLoading = true;
+
+        if (USE_BACKEND) {
+            // Fetch from backend API
+            const endpoint = state.currentSource === 'all'
+                ? `${API_BASE_URL}/api/news`
+                : `${API_BASE_URL}/api/news/source/${state.currentSource}`;
+
+            const response = await fetch(endpoint);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(result.error || 'Failed to fetch news');
+            }
+
+            state.allArticles = result.data;
+            state.filteredArticles = [...result.data];
+
+        } else {
+            // Use sample data
+            state.allArticles = [...sampleNews];
+            state.filteredArticles = [...sampleNews];
+        }
 
         applyFiltersAndSort();
         displayNews();
         updateStats();
         hideLoading();
+        state.error = null;
 
     } catch (error) {
-        showError('Failed to load news articles. Please try again later.');
-        hideLoading();
+        console.error('Error loading news:', error);
+        state.error = error.message;
+
+        // Fallback to sample data if backend fails
+        if (USE_BACKEND && sampleNews.length > 0) {
+            console.warn('Backend failed, falling back to sample data');
+            state.allArticles = [...sampleNews];
+            state.filteredArticles = [...sampleNews];
+            applyFiltersAndSort();
+            displayNews();
+            updateStats();
+            hideLoading();
+            showWarning('Using cached news. Backend server may be unavailable.');
+        } else {
+            showError('Failed to load news articles. Please try again later.');
+            hideLoading();
+        }
+    } finally {
+        state.isLoading = false;
     }
 }
 
@@ -321,9 +373,16 @@ function clearSearch() {
 
 function handleSourceFilter(event) {
     state.currentSource = event.target.value;
-    applyFiltersAndSort();
-    displayNews();
-    updateStats();
+
+    // If using backend and filtering by source, reload from specific endpoint
+    if (USE_BACKEND && state.currentSource !== 'all') {
+        showLoading();
+        loadNews();
+    } else {
+        applyFiltersAndSort();
+        displayNews();
+        updateStats();
+    }
 }
 
 function handleSort(event) {
@@ -370,6 +429,11 @@ function showError(message) {
     elements.errorMessage.style.display = 'block';
     elements.newsGrid.style.display = 'none';
     elements.noResults.style.display = 'none';
+}
+
+function showWarning(message) {
+    console.warn('Warning:', message);
+    // Could add a toast notification here in the future
 }
 
 function updateStats() {
