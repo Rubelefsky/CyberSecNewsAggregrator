@@ -7,13 +7,16 @@ A modern, responsive web application that aggregates cybersecurity news from mul
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
 
 ## 📋 Overview
 
-The CyberSec News Aggregator consolidates cybersecurity news from leading security publications and blogs, providing security professionals, researchers, and enthusiasts with a centralized hub for staying current with the latest threats, vulnerabilities, and security trends.
+The CyberSec News Aggregator is a full-stack web application that consolidates cybersecurity news from leading security publications and blogs. It features a modern frontend interface and a robust backend API that fetches and aggregates news from multiple RSS feeds in real-time, providing security professionals, researchers, and enthusiasts with a centralized hub for staying current with the latest threats, vulnerabilities, and security trends.
 
 ## ✨ Features
 
+### Frontend Features
 - **🔍 Real-time Search**: Instantly search across all articles by title, description, or source
 - **🎯 Source Filtering**: Filter news by specific cybersecurity publications
 - **📊 Smart Sorting**: Sort articles by date or title for easy navigation
@@ -23,36 +26,40 @@ The CyberSec News Aggregator consolidates cybersecurity news from leading securi
 - **⚡ Fast Performance**: Optimized loading and smooth interactions
 - **♿ Accessible**: WCAG compliant with keyboard navigation support
 
+### Backend Features
+- **📡 RSS Aggregation**: Fetches news from 8+ cybersecurity sources
+- **⚡ Caching**: 15-minute cache for improved performance
+- **🔒 Security**: CORS support and Helmet.js security headers
+- **📝 Logging**: Comprehensive Winston logging system
+- **🏥 Health Checks**: Built-in health monitoring endpoint
+- **🛡️ Error Handling**: Graceful error handling and recovery
+- **🔌 RESTful API**: Clean, documented API endpoints
+
 ## 🎯 Supported News Sources
 
-Currently aggregating from:
+Currently aggregating from 8 major cybersecurity sources:
 - **The Hacker News** - Latest cybersecurity news and analysis
 - **Bleeping Computer** - Tech news and security guides
 - **Krebs on Security** - In-depth security investigations
 - **Dark Reading** - Cybersecurity intelligence
 - **Threatpost** - Latest security threats and vulnerabilities
 - **SecurityWeek** - Enterprise security news
+- **CSO Online** - Security and risk management
+- **Trend Micro** - Security research and insights
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: Frontend Only (Sample Data)
 
-- Any modern web browser (Chrome, Firefox, Safari, Edge)
-- No additional dependencies or installations required!
-
-### Installation
+**Prerequisites**: Any modern web browser
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/Rubelefsky/CyberSecNewsAggregrator.git
-```
-
-2. Navigate to the project directory:
-```bash
 cd CyberSecNewsAggregrator
 ```
 
-3. Open `index.html` in your web browser:
+2. Open `index.html` in your browser:
 ```bash
 # On macOS
 open index.html
@@ -64,7 +71,37 @@ xdg-open index.html
 start index.html
 ```
 
-That's it! No build process or dependencies needed.
+The frontend will display sample news data. Perfect for testing the UI!
+
+### Option 2: Full Stack (Live RSS Feeds)
+
+**Prerequisites**: Node.js v16+ and npm
+
+1. Clone and navigate to the repository:
+```bash
+git clone https://github.com/Rubelefsky/CyberSecNewsAggregrator.git
+cd CyberSecNewsAggregrator
+```
+
+2. Install and start the backend:
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm start
+```
+
+The backend will start on `http://localhost:3000`
+
+3. Open the frontend:
+   - If using the backend, open `http://localhost:3000` in your browser
+   - The frontend automatically connects to the backend API
+   - Real-time news from 8+ RSS feeds!
+
+For development with auto-reload:
+```bash
+npm run dev
+```
 
 ## 📖 Usage
 
@@ -82,20 +119,79 @@ For detailed usage instructions, see [USAGE.md](USAGE.md).
 
 ```
 CyberSecNewsAggregrator/
-├── index.html          # Main HTML structure and layout
-├── styles.css          # CSS styling and responsive design
-├── script.js           # JavaScript functionality and logic
-├── README.md          # This file - project overview
-└── USAGE.md           # Detailed usage instructions
+├── frontend/
+│   ├── index.html              # Main HTML structure and layout
+│   ├── styles.css              # CSS styling and responsive design
+│   ├── script.js               # JavaScript functionality and API integration
+│   └── USAGE.md               # Frontend usage instructions
+├── backend/
+│   ├── src/
+│   │   ├── config/            # Configuration files
+│   │   │   ├── logger.js      # Winston logging setup
+│   │   │   └── sources.js     # News source configurations
+│   │   ├── routes/            # API route handlers
+│   │   │   └── newsRoutes.js  # News API endpoints
+│   │   ├── services/          # Business logic
+│   │   │   └── rssFeedService.js  # RSS feed fetching
+│   │   ├── utils/             # Utility functions
+│   │   │   └── cache.js       # Caching middleware
+│   │   └── server.js          # Main Express server
+│   ├── logs/                  # Application logs (auto-generated)
+│   ├── .env.example           # Environment configuration template
+│   ├── package.json           # Node.js dependencies
+│   └── README.md             # Backend documentation
+└── README.md                  # This file - project overview
 ```
 
 ## 🔧 Technical Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+### Frontend
+- **Languages**: HTML5, CSS3, JavaScript (ES6+)
 - **Icons**: Font Awesome 6.4.0
-- **Images**: Unsplash (placeholder images)
+- **Images**: Unsplash API (placeholder images)
 - **Design**: CSS Grid, Flexbox, CSS Variables
-- **Performance**: Debounced search, efficient DOM updates
+- **Features**: Debounced search, efficient DOM updates, API integration
+
+### Backend
+- **Runtime**: Node.js v16+
+- **Framework**: Express.js 4.x
+- **RSS Parser**: rss-parser 3.x
+- **Caching**: node-cache 5.x
+- **Security**: Helmet.js, CORS
+- **Logging**: Winston 3.x
+- **Environment**: dotenv
+
+## 🔌 API Endpoints
+
+The backend provides a RESTful API for fetching cybersecurity news:
+
+### Main Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check and cache statistics |
+| GET | `/api/news` | Fetch all news from all sources |
+| GET | `/api/news/source/:sourceId` | Fetch news from a specific source |
+| GET | `/api/news/sources` | List all available news sources |
+| GET | `/api/news/sources/:sourceId` | Get information about a specific source |
+
+### Example Requests
+
+```bash
+# Health check
+curl http://localhost:3000/api/health
+
+# Get all news
+curl http://localhost:3000/api/news
+
+# Get news from The Hacker News
+curl http://localhost:3000/api/news/source/thehackernews
+
+# List all sources
+curl http://localhost:3000/api/news/sources
+```
+
+For detailed API documentation, see [backend/README.md](backend/README.md).
 
 ## 🎨 Customization
 
@@ -122,16 +218,20 @@ See [USAGE.md](USAGE.md) for detailed customization instructions.
 
 ## 🚀 Future Roadmap
 
-- [ ] **Backend Integration**: Node.js/Python API for real-time news fetching
-- [ ] **RSS Feed Parser**: Direct RSS feed integration from news sources
-- [ ] **Database**: Article caching and persistent storage
-- [ ] **User Accounts**: Personalized feeds and saved articles
+- [x] **Backend API**: Node.js/Express API for real-time news fetching ✅
+- [x] **RSS Feed Parser**: Direct RSS feed integration from 8+ sources ✅
+- [x] **Caching System**: In-memory caching for performance ✅
+- [ ] **Database**: Persistent storage (MongoDB/PostgreSQL)
+- [ ] **User Accounts**: Authentication and personalized feeds
+- [ ] **Bookmarks**: Save articles for later reading
 - [ ] **Notifications**: Real-time alerts for breaking security news
 - [ ] **Advanced Filtering**: Filter by threat type, severity, affected platforms
 - [ ] **Dark/Light Mode**: User-selectable themes
 - [ ] **Export Features**: PDF reports, email digests
-- [ ] **AI Summarization**: Automatic article summaries
+- [ ] **AI Summarization**: Automatic article summaries with OpenAI
 - [ ] **Multi-language Support**: International news sources
+- [ ] **Mobile App**: React Native iOS/Android app
+- [ ] **Analytics**: Usage statistics and popular articles
 
 ## 🤝 Contributing
 
