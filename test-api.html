@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Image Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .article {
+            margin: 20px 0;
+            padding: 15px;
+            background: #16213e;
+            border-radius: 8px;
+        }
+        .article img {
+            max-width: 400px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .image-url {
+            color: #00d9ff;
+            word-break: break-all;
+            font-size: 12px;
+        }
+        h2 {
+            color: #00d9ff;
+        }
+        .error {
+            color: #ff6b6b;
+            padding: 10px;
+            background: #2d1e1e;
+            border-radius: 4px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ API Image Test</h1>
+    <p>Testing if the backend API is returning images correctly...</p>
+    
+    <div id="status" class="loading">Loading...</div>
+    <div id="results"></div>
+
+    <script>
+        async function testAPI() {
+            const statusDiv = document.getElementById('status');
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                statusDiv.innerHTML = '⏳ Fetching from http://localhost:3000/api/news...';
+                
+                const response = await fetch('http://localhost:3000/api/news');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                console.log('Full API Response:', data);
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'API returned success: false');
+                }
+                
+                const articles = data.data;
+                
+                statusDiv.innerHTML = `✅ Successfully loaded ${articles.length} articles`;
+                
+                // Display first 5 articles with images
+                articles.slice(0, 5).forEach((article, index) => {
+                    const articleDiv = document.createElement('div');
+                    articleDiv.className = 'article';
+                    
+                    articleDiv.innerHTML = `
+                        <h2>Article ${index + 1}: ${article.title}</h2>
+                        <p><strong>Source:</strong> ${article.sourceName}</p>
+                        <p><strong>Image URL:</strong> <span class="image-url">${article.imageUrl || 'NO IMAGE URL'}</span></p>
+                        ${article.imageUrl ? `
+                            <img 
+                                src="${article.imageUrl}" 
+                                alt="${article.title}"
+                                onerror="this.style.border='3px solid red'; this.alt='❌ Failed to load: ' + this.src"
+                                onload="console.log('✅ Image loaded:', this.src)"
+                            >
+                        ` : '<p class="error">❌ No image URL provided</p>'}
+                    `;
+                    
+                    resultsDiv.appendChild(articleDiv);
+                });
+                
+                // Log image statistics
+                const articlesWithImages = articles.filter(a => a.imageUrl).length;
+                const articlesWithoutImages = articles.length - articlesWithImages;
+                
+                console.log(`📊 Image Statistics:
+                    Total articles: ${articles.length}
+                    With images: ${articlesWithImages}
+                    Without images: ${articlesWithoutImages}
+                `);
+                
+            } catch (error) {
+                statusDiv.innerHTML = `❌ Error: ${error.message}`;
+                statusDiv.className = 'error';
+                console.error('API Test Error:', error);
+            }
+        }
+        
+        // Run test when page loads
+        window.addEventListener('DOMContentLoaded', testAPI);
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables - NEVER commit these!
+.env
+.env.local
+.env.*.local
+backend/.env
+backend/.env.local
+
+# Logs - May contain sensitive information
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+backend/logs/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+.nyc_output/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build output
+dist/
+build/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Personal notes or local configurations
+notes.md
+TODO.md
+*.local.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp

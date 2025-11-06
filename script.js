@@ -2,7 +2,7 @@
 // Configuration
 // ===================================
 
-const API_BASE_URL = window.location.origin;
+const API_BASE_URL = 'http://localhost:3000';
 const USE_BACKEND = true; // Set to false to use sample data
 
 // ===================================
@@ -32,7 +32,7 @@ const sampleNews = [
         source: "thehackernews",
         sourceName: "The Hacker News",
         url: "https://thehackernews.com",
-        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -42,7 +42,7 @@ const sampleNews = [
         source: "bleepingcomputer",
         sourceName: "Bleeping Computer",
         url: "https://www.bleepingcomputer.com",
-        imageUrl: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -52,7 +52,7 @@ const sampleNews = [
         source: "krebsonsecurity",
         sourceName: "Krebs on Security",
         url: "https://krebsonsecurity.com",
-        imageUrl: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -62,7 +62,7 @@ const sampleNews = [
         source: "darkreading",
         sourceName: "Dark Reading",
         url: "https://www.darkreading.com",
-        imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -72,7 +72,7 @@ const sampleNews = [
         source: "threatpost",
         sourceName: "Threatpost",
         url: "https://threatpost.com",
-        imageUrl: "https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 18 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -82,7 +82,7 @@ const sampleNews = [
         source: "securityweek",
         sourceName: "SecurityWeek",
         url: "https://www.securityweek.com",
-        imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -92,7 +92,7 @@ const sampleNews = [
         source: "thehackernews",
         sourceName: "The Hacker News",
         url: "https://thehackernews.com",
-        imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 30 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -102,7 +102,7 @@ const sampleNews = [
         source: "bleepingcomputer",
         sourceName: "Bleeping Computer",
         url: "https://www.bleepingcomputer.com",
-        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -112,7 +112,7 @@ const sampleNews = [
         source: "krebsonsecurity",
         sourceName: "Krebs on Security",
         url: "https://krebsonsecurity.com",
-        imageUrl: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 42 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -122,7 +122,7 @@ const sampleNews = [
         source: "darkreading",
         sourceName: "Dark Reading",
         url: "https://www.darkreading.com",
-        imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -132,7 +132,7 @@ const sampleNews = [
         source: "threatpost",
         sourceName: "Threatpost",
         url: "https://threatpost.com",
-        imageUrl: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 54 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -142,7 +142,7 @@ const sampleNews = [
         source: "securityweek",
         sourceName: "SecurityWeek",
         url: "https://www.securityweek.com",
-        imageUrl: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&h=400&fit=crop",
+        imageUrl: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&h=400&fit=crop&q=80",
         publishedAt: new Date(Date.now() - 60 * 60 * 60 * 1000).toISOString()
     }
 ];
@@ -287,16 +287,19 @@ function createNewsCard(article) {
     card.setAttribute('data-article-id', article.id);
 
     const formattedDate = formatDate(article.publishedAt);
+    
+    // Use static Unsplash image - always reliable
+    const imageUrl = article.imageUrl || 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop&q=80';
 
     card.innerHTML = `
         <div class="news-card-header">
             <img
-                src="${article.imageUrl}"
-                alt="${article.title}"
+                src="${escapeHtml(imageUrl)}"
+                alt="${escapeHtml(article.title)}"
                 class="news-card-image"
-                onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop'"
+                onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop&q=80'"
             >
-            <span class="news-card-source">${article.sourceName}</span>
+            <span class="news-card-source">${escapeHtml(article.sourceName)}</span>
         </div>
         <div class="news-card-body">
             <h3 class="news-card-title">${escapeHtml(article.title)}</h3>

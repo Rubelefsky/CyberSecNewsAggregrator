@@ -12,9 +12,11 @@ const parser = new Parser({
   timeout: 10000,
   customFields: {
     item: [
-      ['media:content', 'media'],
+      ['media:content', 'media', {keepArray: true}],
+      ['media:thumbnail', 'mediaThumbnail', {keepArray: true}],
       ['content:encoded', 'contentEncoded'],
-      ['dc:creator', 'creator']
+      ['dc:creator', 'creator'],
+      ['description', 'description']
     ]
   }
 });
@@ -29,25 +31,9 @@ const fetchSourceFeed = async (source) => {
     const feed = await parser.parseURL(source.url);
 
     const articles = feed.items.map(item => {
-      // Extract image URL from various possible locations
-      let imageUrl = null;
-
-      if (item.enclosure && item.enclosure.url) {
-        imageUrl = item.enclosure.url;
-      } else if (item.media && item.media.$) {
-        imageUrl = item.media.$.url;
-      } else if (item.content && item.content.includes('<img')) {
-        const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
-        if (imgMatch) imageUrl = imgMatch[1];
-      } else if (item.contentEncoded && item.contentEncoded.includes('<img')) {
-        const imgMatch = item.contentEncoded.match(/<img[^>]+src="([^">]+)"/);
-        if (imgMatch) imageUrl = imgMatch[1];
-      }
-
-      // Fallback to a default cybersecurity image based on source
-      if (!imageUrl) {
-        imageUrl = getDefaultImage(source.id);
-      }
+      // Use static Unsplash image based on source
+      // This ensures all images load reliably and consistently
+      const imageUrl = getDefaultImage(source.id);
 
       // Clean up description/content
       let description = item.contentSnippet || item.summary || item.content || '';
@@ -175,21 +161,23 @@ const generateArticleId = (url) => {
 };
 
 /**
- * Get default image for a source
+ * Get static cybersecurity-themed image for a source
+ * Uses high-quality Unsplash images that are always available
  */
 const getDefaultImage = (sourceId) => {
-  const defaultImages = {
-    thehackernews: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop',
-    bleepingcomputer: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=400&fit=crop',
-    krebsonsecurity: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop',
-    darkreading: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop',
-    threatpost: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=400&fit=crop',
-    securityweek: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
-    csoonline: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=400&fit=crop',
-    trendmicro: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop'
+  const staticImages = {
+    // Cybersecurity lock and shield images
+    thehackernews: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop&q=80',
+    bleepingcomputer: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=400&fit=crop&q=80',
+    krebsonsecurity: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop&q=80',
+    darkreading: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&q=80',
+    threatpost: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=400&fit=crop&q=80',
+    securityweek: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop&q=80',
+    csoonline: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=400&fit=crop&q=80',
+    trendmicro: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop&q=80'
   };
 
-  return defaultImages[sourceId] || 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop';
+  return staticImages[sourceId] || 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop&q=80';
 };
 
 module.exports = {

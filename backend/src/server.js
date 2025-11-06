@@ -20,8 +20,19 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 // Middleware
 // ===================================
 
-// Security headers
-app.use(helmet());
+// Security headers with CSP configuration to allow external images
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:", "http:"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+      fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+      connectSrc: ["'self'"],
+    },
+  },
+}));
 
 // CORS configuration
 const corsOptions = {
