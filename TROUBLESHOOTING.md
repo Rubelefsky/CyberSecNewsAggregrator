@@ -258,6 +258,13 @@ This will display the built-in sample articles with working image URLs.
 
 ---
 
+
+## Port 3000 Still Running##
+If the port is still running - run the following:
+   
+   netstat -ano | findstr :3000
+   taskkill /F /PID <process_id>
+
 ## Contact & Support
 
 If issues persist:
