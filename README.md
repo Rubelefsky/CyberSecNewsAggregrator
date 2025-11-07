@@ -2,7 +2,7 @@
 
 A modern, full-stack web application that aggregates cybersecurity news from multiple trusted sources into a single, unified interface. Stay informed about the latest security threats, vulnerabilities, and industry developments all in one place.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.1.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
