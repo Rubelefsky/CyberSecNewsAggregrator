@@ -1,7 +1,88 @@
-# 📝 Changelog - Image Loading Implementation
+# 📝 Changelog
 
-**Date:** November 5, 2025  
-**Version:** 1.1.0  
+---
+
+## Version 1.1.1 - RSS Feed Fixes
+
+**Date:** November 6, 2025
+**Summary:** Fixed failing RSS feeds and updated documentation to reflect correct source count.
+
+### 🔧 Changes Made
+
+#### 1. Fixed SecurityWeek RSS Feed
+**File:** `backend/src/config/sources.js:55`
+
+**Issue:** HTTP 403 Forbidden error
+**Solution:** Updated RSS feed URL to use FeedBurner
+
+**Before:**
+```javascript
+url: 'https://www.securityweek.com/feed'
+```
+
+**After:**
+```javascript
+url: 'https://feeds.feedburner.com/securityweek'
+```
+
+#### 2. Fixed Trend Micro RSS Feed
+**File:** `backend/src/config/sources.js:73`
+
+**Issue:** HTTP 404 Not Found error
+**Solution:** Updated to correct RSS feed URL and renamed source
+
+**Before:**
+```javascript
+name: 'Trend Micro Security Blog',
+url: 'https://www.trendmicro.com/en_us/research.rss.xml'
+```
+
+**After:**
+```javascript
+name: 'Trend Micro Research',
+url: 'http://feeds.trendmicro.com/TrendMicroResearch'
+```
+
+#### 3. Disabled Threatpost Feed
+**File:** `backend/src/config/sources.js:49`
+
+**Issue:** Request timeout (site shut down in September 2022)
+**Solution:** Disabled the source
+
+**Before:**
+```javascript
+enabled: true
+```
+
+**After:**
+```javascript
+enabled: false, // Site shut down in September 2022
+```
+
+### 📊 Results
+
+**Before Fix:**
+- 8 sources configured
+- 5 successful, 3 failed
+- ~142 total articles
+
+**After Fix:**
+- 7 active sources
+- 7 successful, 0 failed
+- ~252 total articles (75% increase!)
+
+### 📚 Documentation Updated
+
+- Updated README.md to reflect 7 active sources
+- Updated backend/README.md with corrected RSS feed URLs
+- Updated USAGE.md with current source list
+- Added status column to source tables indicating fixed feeds
+
+---
+
+## Version 1.1.0 - Image Loading Implementation
+
+**Date:** November 5, 2025
 **Summary:** Implemented static Unsplash images for all article cards to ensure reliable, consistent image display across the application.
 
 ---

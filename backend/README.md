@@ -32,10 +32,10 @@ A robust, production-ready REST API for aggregating cybersecurity news from mult
 
 ## 📖 Overview
 
-This backend service is the heart of the CyberSec News Aggregator application. It fetches cybersecurity news from 8+ trusted RSS sources, parses and normalizes the data, and provides a unified REST API with intelligent caching and comprehensive error handling.
+This backend service is the heart of the CyberSec News Aggregator application. It fetches cybersecurity news from 7 trusted RSS sources, parses and normalizes the data, and provides a unified REST API with intelligent caching and comprehensive error handling.
 
 **Key Capabilities:**
-- ⚡ Real-time RSS feed aggregation from 8+ sources
+- ⚡ Real-time RSS feed aggregation from 7 sources
 - 🗄️ Intelligent 15-minute caching for optimal performance
 - 🔒 Production-ready security with Helmet.js and CSP
 - 📝 Comprehensive Winston logging system
@@ -49,7 +49,7 @@ This backend service is the heart of the CyberSec News Aggregator application. I
 ## ✨ Features
 
 ### Core Features
-- **RSS Feed Aggregation** - Fetches and parses news from 8+ cybersecurity sources simultaneously
+- **RSS Feed Aggregation** - Fetches and parses news from 7 cybersecurity sources simultaneously
 - **Smart Caching** - 15-minute in-memory cache with automatic expiration and hit/miss tracking
 - **Static Image Assignment** - Each source has a unique, high-quality Unsplash image for consistent branding
 - **Parallel Fetching** - All RSS feeds fetched concurrently using Promise.allSettled
@@ -128,15 +128,14 @@ This backend service is the heart of the CyberSec News Aggregator application. I
 │                      │                                       │
 │                      ↓                                       │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │ News Sources (8+ RSS Feeds)                         │   │
+│  │ News Sources (7 Active RSS Feeds)                   │   │
 │  │  • The Hacker News                                  │   │
 │  │  • Bleeping Computer                                │   │
 │  │  • Krebs on Security                                │   │
 │  │  • Dark Reading                                     │   │
-│  │  • Threatpost                                       │   │
-│  │  • SecurityWeek                                     │   │
+│  │  • SecurityWeek (Fixed)                             │   │
 │  │  • CSO Online                                       │   │
-│  │  • Trend Micro                                      │   │
+│  │  • Trend Micro Research (Fixed)                     │   │
 │  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
                       │
@@ -407,18 +406,23 @@ LOG_LEVEL=warn
 
 ### Current Sources
 
-The API aggregates news from 8 cybersecurity sources:
+The API aggregates news from **7 active cybersecurity sources**:
 
-| Source | ID | Category | RSS Feed | Image Theme |
-|--------|----|---------| -|-------------|
-| **The Hacker News** | `thehackernews` | news | [Feed](https://feeds.feedburner.com/TheHackersNews) | Cybersecurity lock |
-| **Bleeping Computer** | `bleepingcomputer` | news | [Feed](https://www.bleepingcomputer.com/feed/) | Security shield |
-| **Krebs on Security** | `krebsonsecurity` | analysis | [Feed](https://krebsonsecurity.com/feed/) | Digital security |
-| **Dark Reading** | `darkreading` | news | [Feed](https://www.darkreading.com/rss.xml) | Tech security |
-| **Threatpost** | `threatpost` | threats | [Feed](https://threatpost.com/feed/) | Browser security |
-| **SecurityWeek** | `securityweek` | news | [Feed](https://www.securityweek.com/feed) | Network security |
-| **CSO Online** | `csoonline` | analysis | [Feed](https://www.csoonline.com/feed) | IoT security |
-| **Trend Micro** | `trendmicro` | research | [Feed](https://www.trendmicro.com/en_us/research.rss.xml) | Space/tech security |
+| Source | ID | Category | RSS Feed | Status | Image Theme |
+|--------|----|---------| -|--------|-------------|
+| **The Hacker News** | `thehackernews` | news | [Feed](https://feeds.feedburner.com/TheHackersNews) | ✅ Active | Cybersecurity lock |
+| **Bleeping Computer** | `bleepingcomputer` | news | [Feed](https://www.bleepingcomputer.com/feed/) | ✅ Active | Security shield |
+| **Krebs on Security** | `krebsonsecurity` | analysis | [Feed](https://krebsonsecurity.com/feed/) | ✅ Active | Digital security |
+| **Dark Reading** | `darkreading` | news | [Feed](https://www.darkreading.com/rss.xml) | ✅ Active | Tech security |
+| **SecurityWeek** | `securityweek` | news | [Feed](https://feeds.feedburner.com/securityweek) | ✅ Fixed | Network security |
+| **CSO Online** | `csoonline` | analysis | [Feed](https://www.csoonline.com/feed) | ✅ Active | IoT security |
+| **Trend Micro Research** | `trendmicro` | research | [Feed](http://feeds.trendmicro.com/TrendMicroResearch) | ✅ Fixed | Space/tech security |
+| ~~**Threatpost**~~ | ~~`threatpost`~~ | ~~threats~~ | ~~Feed~~ | ❌ Disabled | ~~Browser security~~ |
+
+**Recent Updates:**
+- **SecurityWeek**: Updated RSS feed URL to FeedBurner (was returning 403 error)
+- **Trend Micro Research**: Updated to correct RSS feed URL (old URL returned 404)
+- **Threatpost**: Disabled - Site shut down in September 2022
 
 ### Static Image Assignments
 
@@ -430,10 +434,10 @@ const staticImages = {
   bleepingcomputer: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=400&fit=crop&q=80',
   krebsonsecurity: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=400&fit=crop&q=80',
   darkreading: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&q=80',
-  threatpost: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=400&fit=crop&q=80',
   securityweek: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop&q=80',
   csoonline: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=400&fit=crop&q=80',
   trendmicro: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop&q=80'
+  // Note: Threatpost disabled (site shut down Sept 2022)
 };
 ```
 

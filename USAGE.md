@@ -17,8 +17,9 @@ Filter news by specific cybersecurity sources:
 - Bleeping Computer
 - Krebs on Security
 - Dark Reading
-- Threatpost
 - SecurityWeek
+- CSO Online
+- Trend Micro Research
 
 ### 📊 Sorting Options
 Sort articles by:

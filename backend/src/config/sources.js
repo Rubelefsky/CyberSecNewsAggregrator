@@ -46,13 +46,13 @@ const newsSources = {
     url: 'https://threatpost.com/feed/',
     website: 'https://threatpost.com',
     description: 'Latest security threats and vulnerabilities',
-    enabled: true,
+    enabled: false, // Site shut down in September 2022
     category: 'threats'
   },
   securityweek: {
     id: 'securityweek',
     name: 'SecurityWeek',
-    url: 'https://www.securityweek.com/feed',
+    url: 'https://feeds.feedburner.com/securityweek',
     website: 'https://www.securityweek.com',
     description: 'Enterprise security news',
     enabled: true,
@@ -69,8 +69,8 @@ const newsSources = {
   },
   trendmicro: {
     id: 'trendmicro',
-    name: 'Trend Micro Security Blog',
-    url: 'https://www.trendmicro.com/en_us/research.rss.xml',
+    name: 'Trend Micro Research',
+    url: 'http://feeds.trendmicro.com/TrendMicroResearch',
     website: 'https://www.trendmicro.com',
     description: 'Security research and insights',
     enabled: true,

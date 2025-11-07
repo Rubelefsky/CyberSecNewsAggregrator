@@ -58,7 +58,7 @@ The CyberSec News Aggregator is a comprehensive full-stack web application that 
 - **🖼️ Static Images** - Reliable Unsplash CDN images with 100% availability
 
 ### Backend Features
-- **📡 RSS Aggregation** - Fetches news from 8+ cybersecurity sources simultaneously
+- **📡 RSS Aggregation** - Fetches news from 7 cybersecurity sources simultaneously
 - **⚡ Smart Caching** - 15-minute cache for improved performance and reduced load
 - **🔒 Security Hardened** - CORS support, Helmet.js security headers, and CSP
 - **📝 Comprehensive Logging** - Winston logging system with multiple log levels and files
@@ -71,18 +71,18 @@ The CyberSec News Aggregator is a comprehensive full-stack web application that 
 
 ## 🎯 Supported News Sources
 
-Currently aggregating from **8 major cybersecurity sources**:
+Currently aggregating from **7 major cybersecurity sources**:
 
-| Source | Description | Topics |
-|--------|-------------|--------|
-| **The Hacker News** | Latest cybersecurity news and analysis | Threats, vulnerabilities, malware |
-| **Bleeping Computer** | Tech news and security guides | Software, hardware, tutorials |
-| **Krebs on Security** | In-depth security investigations | Cybercrime, fraud, data breaches |
-| **Dark Reading** | Cybersecurity intelligence | Enterprise security, risk |
-| **Threatpost** | Latest security threats and vulnerabilities | Zero-days, exploits, patches |
-| **SecurityWeek** | Enterprise security news | Industry news, compliance |
-| **CSO Online** | Security and risk management | Leadership, strategy, governance |
-| **Trend Micro** | Security research and insights | Research, threat intelligence |
+| Source | Description | Topics | Status |
+|--------|-------------|--------|--------|
+| **The Hacker News** | Latest cybersecurity news and analysis | Threats, vulnerabilities, malware | ✅ Active |
+| **Bleeping Computer** | Tech news and security guides | Software, hardware, tutorials | ✅ Active |
+| **Krebs on Security** | In-depth security investigations | Cybercrime, fraud, data breaches | ✅ Active |
+| **Dark Reading** | Cybersecurity intelligence | Enterprise security, risk | ✅ Active |
+| **SecurityWeek** | Enterprise security news | Industry news, compliance | ✅ Active (Fixed) |
+| **CSO Online** | Security and risk management | Leadership, strategy, governance | ✅ Active |
+| **Trend Micro Research** | Security research and insights | Research, threat intelligence | ✅ Active (Fixed) |
+| ~~**Threatpost**~~ | ~~Latest security threats~~ | ~~Zero-days, exploits, patches~~ | ❌ Disabled (Site shut down Sept 2022) |
 
 Each source features unique, high-quality cybersecurity-themed images from Unsplash for consistent visual identity.
 
@@ -144,7 +144,7 @@ The backend will start on `http://localhost:3000`
 **Access the application:**
 - Open `http://localhost:3000` in your browser
 - The frontend automatically connects to the backend API
-- Enjoy real-time news from 8+ RSS feeds!
+- Enjoy real-time news from 7 RSS feeds!
 
 **For development with auto-reload:**
 ```bash
@@ -877,10 +877,9 @@ See the [LICENSE](LICENSE) file for details.
   - Bleeping Computer
   - Krebs on Security
   - Dark Reading
-  - Threatpost
   - SecurityWeek
   - CSO Online
-  - Trend Micro
+  - Trend Micro Research
 - **Open Source Community** - Libraries and tools used in this project
 
 ---
@@ -928,8 +927,8 @@ Built with security, performance, and scalability in mind. Ready for deployment 
 
 ## 📊 Statistics
 
-- **8+** Cybersecurity News Sources
-- **150+** Articles aggregated daily
+- **7** Active Cybersecurity News Sources
+- **250+** Articles aggregated daily
 - **15 min** Cache duration for optimal performance
 - **100%** Image availability with Unsplash CDN
 - **<100ms** Average API response time (cached)
