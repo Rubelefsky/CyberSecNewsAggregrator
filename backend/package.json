@@ -1,6 +1,6 @@
 {
   "name": "cybersec-news-aggregator-backend",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Backend API for CyberSec News Aggregator - fetches and aggregates cybersecurity news from multiple sources",
   "main": "src/server.js",
   "scripts": {

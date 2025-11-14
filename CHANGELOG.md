@@ -4,7 +4,7 @@
 
 ## Version 1.1.1 - RSS Feed Fixes
 
-**Date:** November 6, 2025
+**Date:** November 6, 2024
 **Summary:** Fixed failing RSS feeds and updated documentation to reflect correct source count.
 
 ### 🔧 Changes Made
@@ -82,7 +82,7 @@ enabled: false, // Site shut down in September 2022
 
 ## Version 1.1.0 - Image Loading Implementation
 
-**Date:** November 5, 2025
+**Date:** November 5, 2024
 **Summary:** Implemented static Unsplash images for all article cards to ensure reliable, consistent image display across the application.
 
 ---
@@ -675,7 +675,7 @@ Each news source is assigned a unique, cybersecurity-themed Unsplash image:
 
 ## 📝 Version History
 
-### Version 1.1.0 (November 5, 2025)
+### Version 1.1.0 (November 5, 2024)
 - ✅ Implemented static Unsplash images
 - ✅ Fixed frontend API URL configuration
 - ✅ Enhanced Content Security Policy
@@ -732,6 +732,6 @@ For issues related to images:
 
 ---
 
-**Last Updated:** November 5, 2025  
-**Maintained By:** Development Team  
+**Last Updated:** November 14, 2024
+**Maintained By:** Development Team
 **Repository:** https://github.com/Rubelefsky/CyberSecNewsAggregrator

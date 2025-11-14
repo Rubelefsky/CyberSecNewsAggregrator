@@ -2,7 +2,7 @@
 
 A robust, production-ready REST API for aggregating cybersecurity news from multiple RSS feeds with intelligent caching, comprehensive logging, and security hardening.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.1.1-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-16+-339933?logo=node.js)
 ![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express)
 ![License](https://img.shields.io/badge/license-MIT-green)
