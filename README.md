@@ -812,7 +812,14 @@ chore: Update dependencies
 
 ## 📝 Version History
 
-### Version 1.1.0 (November 2025)
+### Version 1.1.1 (November 2024)
+- ✅ Fixed SecurityWeek RSS feed (403 error resolved)
+- ✅ Fixed Trend Micro RSS feed (404 error resolved)
+- ✅ Disabled Threatpost feed (site shut down)
+- ✅ Updated documentation to reflect 7 active sources
+- ✅ 75% increase in aggregated articles (142 → 252)
+
+### Version 1.1.0 (November 2024)
 - ✅ Implemented static Unsplash images for all sources
 - ✅ Fixed frontend API URL configuration
 - ✅ Enhanced Content Security Policy
@@ -839,7 +846,7 @@ This project is licensed under the **MIT License**.
 ```
 MIT License
 
-Copyright (c) 2025 Rubelefsky
+Copyright (c) 2024 Rubelefsky
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -909,7 +916,7 @@ See the [LICENSE](LICENSE) file for details.
 ## 🌟 Features Showcase
 
 ### Real-time News Aggregation
-Fetch and display the latest cybersecurity news from 8+ trusted sources in real-time with automatic caching for optimal performance.
+Fetch and display the latest cybersecurity news from 7 active trusted sources in real-time with automatic caching for optimal performance.
 
 ### Smart Search & Filtering
 Instantly search across all articles with debounced input and filter by specific news sources for focused reading.

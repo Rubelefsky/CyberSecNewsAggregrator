@@ -40,8 +40,20 @@ Sort articles by:
 ## How to Use
 
 ### Opening the Application
-1. Open `index.html` in any modern web browser
-2. The page will automatically load and display cybersecurity news
+
+**Full Stack Setup (Recommended):**
+1. Start the backend server:
+   ```bash
+   cd backend
+   npm install
+   npm start
+   ```
+2. Open `http://localhost:3000` in your browser
+3. The application will load real-time cybersecurity news from 7 RSS feeds
+
+**Frontend Only (Sample Data):**
+1. Open `index.html` directly in any modern web browser
+2. The page will display sample cybersecurity news articles
 
 ### Searching for Articles
 1. Click on the search bar at the top
@@ -82,10 +94,15 @@ CyberSecNewsAggregrator/
 ```
 
 ### Current Implementation
-- **Frontend Framework**: Vanilla HTML, CSS, and JavaScript
+- **Frontend**: Vanilla HTML, CSS, and JavaScript (ES6+)
+- **Backend**: Node.js with Express.js
+- **RSS Parser**: rss-parser for feed aggregation
+- **Caching**: node-cache with 15-minute TTL
+- **Security**: Helmet.js with CSP, CORS configuration
+- **Logging**: Winston multi-level logging
 - **Icons**: Font Awesome 6.4.0
-- **Images**: Unsplash API (placeholder images)
-- **Data**: Currently using sample data (mock news articles)
+- **Images**: Static Unsplash CDN images (high-quality, reliable)
+- **Data**: Real-time RSS feeds from 7 cybersecurity sources
 
 ### Browser Compatibility
 - Chrome 90+
@@ -94,13 +111,20 @@ CyberSecNewsAggregrator/
 - Edge 90+
 - Opera 76+
 
+## Implemented Features ✅
+
+1. ✅ **API Integration**: Connected to real RSS feeds from 7 cybersecurity sources
+2. ✅ **Backend Service**: Node.js/Express backend for aggregating news
+3. ✅ **Caching**: In-memory cache with 15-minute TTL
+4. ✅ **Security Hardening**: Helmet.js, CORS, CSP, rate limiting
+5. ✅ **Comprehensive Logging**: Winston logging with multiple levels
+
 ## Future Enhancements
 
 ### Planned Features
-1. **API Integration**: Connect to real RSS feeds and APIs from cybersecurity news sources
-2. **Backend Service**: Node.js/Python backend for aggregating news
-3. **Database**: Store and cache articles
-4. **Notifications**: Alert users to breaking security news
+1. **Database**: Persistent storage with MongoDB or PostgreSQL
+2. **Notifications**: Alert users to breaking security news
+3. **User Authentication**: Personal accounts and saved preferences
 5. **Bookmarks**: Save articles for later reading
 6. **Dark/Light Mode Toggle**: User preference for themes
 7. **Export**: Download articles as PDF or email digest
